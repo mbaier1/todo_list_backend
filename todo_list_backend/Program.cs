@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using todo_list_backend.Data;
+using todo_list_backend.Domains.Todo;
+using todo_list_backend.Domains.Todo.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,12 +12,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<TodoListDbContext>(options => options.UseSqlServer(
+    "DataSource=(localdb)\\MSSQLLocalDB;InitialCatalog=InMemoryDb"));
+
+builder.Services.AddTransient<ICreateTodo, CreateTodo>();
+
 var reactTodoPolicy = "ReactTodoPolicy";
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(reactTodoPolicy,
-        builder => builder.WithOrigins("http://localhost:3000")
+        builder => builder.WithOrigins("http://localhost:3000", "http://192.168.1.147:3000")
         .AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 });
 
