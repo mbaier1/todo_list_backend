@@ -8,12 +8,18 @@ namespace todo_list_backend.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class TodoController(ICreateTodo _createDtoDomain) : ControllerBase
+public class TodoController(ITodoDomain _dtoDomain) : ControllerBase
 {
-    [HttpPost]
-    public IActionResult Post([FromBody] TodoItemDto todoItemDto)
+    [HttpGet]
+    public IActionResult GetTodos()
     {
-        Console.WriteLine(todoItemDto);
+        return Ok(_dtoDomain.GetTodos());
+    }
+
+    [HttpPost]
+    public IActionResult CreateTodo([FromBody] TodoItemDto todoItemDto)
+    {
+        _dtoDomain.CreateTodo(todoItemDto);
 
         return Created();
     }

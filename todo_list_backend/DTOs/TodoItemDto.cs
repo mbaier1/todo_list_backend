@@ -4,6 +4,9 @@ namespace todo_list_backend.DTOs;
 
 public class TodoItemDto
 {
+    [JsonPropertyName("id")]
+    public string Id { get; set; }
+
     [JsonPropertyName("description")]
     public string Description { get; set; }
     [JsonPropertyName("deadline")]

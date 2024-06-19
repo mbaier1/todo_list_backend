@@ -1,7 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using todo_list_backend.Data;
+using todo_list_backend.Domains.Mappers;
+using todo_list_backend.Domains.Mappers.Interfaces;
 using todo_list_backend.Domains.Todo;
 using todo_list_backend.Domains.Todo.Interfaces;
+using todo_list_backend.Repositories;
+using todo_list_backend.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +19,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoListDbContext>(options => options.UseSqlServer(
     "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=InMemoryDb"));
 
-builder.Services.AddTransient<ICreateTodo, CreateTodo>();
+builder.Services.AddTransient<ITodoDomain, TodoDomain>();
+builder.Services.AddTransient<ITodoItemDtoToTodoItemMapper, TodoItemDtoToTodoItemMapper>();
+builder.Services.AddTransient<ITodoItemModelToTodoItemDto, TodoItemModelToTodoItemDto>();
+builder.Services.AddTransient<ITodoRepository, TodoRepository>();
 
 var reactTodoPolicy = "ReactTodoPolicy";
 
