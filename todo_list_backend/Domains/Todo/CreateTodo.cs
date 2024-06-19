@@ -7,6 +7,6 @@ public class CreateTodo : ICreateTodo
 {
     public void Create(TodoItemDto todoItemDto)
     {
-        var id = Guid.NewGuid();
+
     }
 }

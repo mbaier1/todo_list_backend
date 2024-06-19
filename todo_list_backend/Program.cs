@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<TodoListDbContext>(options => options.UseSqlServer(
-    "DataSource=(localdb)\\MSSQLLocalDB;InitialCatalog=InMemoryDb"));
+    "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=InMemoryDb"));
 
 builder.Services.AddTransient<ICreateTodo, CreateTodo>();
 

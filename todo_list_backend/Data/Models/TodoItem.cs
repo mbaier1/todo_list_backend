@@ -1,6 +1,6 @@
 ﻿namespace todo_list_backend.Data.Models;
 
-public class TodoItemModel
+public class TodoItem
 {
     public Guid Id { get; set; }
     public string Description { get; set; }
