@@ -2,20 +2,19 @@
 using todo_list_backend.Domains.Mappers.Interfaces;
 using todo_list_backend.DTOs;
 
-namespace todo_list_backend.Domains.Mappers
+namespace todo_list_backend.Domains.Mappers;
+
+public class TodoItemModelToTodoItemDto : ITodoItemModelToTodoItemDto
 {
-    public class TodoItemModelToTodoItemDto : ITodoItemModelToTodoItemDto
+    public TodoItemDto Map(TodoItem todoItem)
     {
-        public TodoItemDto Map(TodoItem todoItem)
+        return new TodoItemDto
         {
-            return new TodoItemDto
-            {
-                Id = todoItem.Id.ToString(),
-                Description = todoItem.Description,
-                Deadline = todoItem.Deadline,
-                AreThereAdditionalDetails = todoItem.AreThereAdditionalDetails,
-                AdditionalDetails = todoItem.AdditionalDetails
-            };
-        }
+            Id = todoItem.Id.ToString(),
+            Description = todoItem.Description,
+            Deadline = todoItem.Deadline,
+            AreThereAdditionalDetails = todoItem.AreThereAdditionalDetails,
+            AdditionalDetails = todoItem.AdditionalDetails
+        };
     }
 }
