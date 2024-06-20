@@ -14,6 +14,7 @@ public class TodoItemDtoToTodoItemMapper : ITodoItemDtoToTodoItemMapper
             Deadline = todoItemDto.Deadline,
             AreThereAdditionalDetails = todoItemDto.AreThereAdditionalDetails,
             AdditionalDetails = todoItemDto.AdditionalDetails,
+            TodoIsOverdue = todoItemDto.TodoIsOverdue,
         };
     }
 }

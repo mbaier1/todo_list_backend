@@ -7,4 +7,5 @@ public class TodoItem
     public string Deadline { get; set; }
     public bool AreThereAdditionalDetails { get; set; }
     public string AdditionalDetails { get; set; }
+    public bool TodoIsOverdue { get; set; }
 }

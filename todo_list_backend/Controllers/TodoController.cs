@@ -2,8 +2,6 @@
 using todo_list_backend.Domains.Todo.Interfaces;
 using todo_list_backend.DTOs;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace todo_list_backend.Controllers;
 
 [Route("api/[controller]")]
@@ -22,5 +20,13 @@ public class TodoController(ITodoDomain _dtoDomain) : ControllerBase
         _dtoDomain.CreateTodo(todoItemDto);
 
         return Created();
+    }
+
+    [HttpDelete]
+    public IActionResult DeleteTodo([FromBody] TodoItemDto todoItemDto)
+    {
+        _dtoDomain.DeleteTodo(todoItemDto.Id);
+
+        return NoContent();
     }
 }

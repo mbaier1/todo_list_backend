@@ -15,4 +15,6 @@ public class TodoItemDto
     public bool AreThereAdditionalDetails { get; set; }
     [JsonPropertyName("additionalDetails")]
     public string AdditionalDetails { get; set; }
+    [JsonPropertyName("todoIsOverdue")]
+    public bool TodoIsOverdue { get; set; }
 }

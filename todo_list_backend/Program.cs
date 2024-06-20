@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using todo_list_backend.Data;
+using todo_list_backend.Domains.Calculators;
+using todo_list_backend.Domains.Calculators.Interfaces;
 using todo_list_backend.Domains.Mappers;
 using todo_list_backend.Domains.Mappers.Interfaces;
 using todo_list_backend.Domains.Todo;
@@ -22,6 +24,7 @@ builder.Services.AddDbContext<TodoListDbContext>(options => options.UseSqlServer
 builder.Services.AddTransient<ITodoDomain, TodoDomain>();
 builder.Services.AddTransient<ITodoItemDtoToTodoItemMapper, TodoItemDtoToTodoItemMapper>();
 builder.Services.AddTransient<ITodoItemModelToTodoItemDto, TodoItemModelToTodoItemDto>();
+builder.Services.AddTransient<ITodoDueDateCalculator, TodoDueDateCalculator>();
 builder.Services.AddTransient<ITodoRepository, TodoRepository>();
 
 var reactTodoPolicy = "ReactTodoPolicy";

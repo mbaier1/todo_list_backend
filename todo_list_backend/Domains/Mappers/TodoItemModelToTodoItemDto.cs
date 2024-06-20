@@ -14,7 +14,8 @@ public class TodoItemModelToTodoItemDto : ITodoItemModelToTodoItemDto
             Description = todoItem.Description,
             Deadline = todoItem.Deadline,
             AreThereAdditionalDetails = todoItem.AreThereAdditionalDetails,
-            AdditionalDetails = todoItem.AdditionalDetails
+            AdditionalDetails = todoItem.AdditionalDetails,
+            TodoIsOverdue = todoItem.TodoIsOverdue,
         };
     }
 }

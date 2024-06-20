@@ -1,10 +1,11 @@
 ﻿using todo_list_backend.Data.Models;
 
-namespace todo_list_backend.Repositories.Interfaces
+namespace todo_list_backend.Repositories.Interfaces;
+
+public interface ITodoRepository
 {
-    public interface ITodoRepository
-    {
-        void AddTodoItem(TodoItem todoItemModel);
-        List<TodoItem> GetTodos();
-    }
+    List<TodoItem> GetTodoItems();
+    TodoItem GetTodoItem(Guid id);
+    void AddTodoItem(TodoItem todoItemModel);
+    void DeleteTodoItem(TodoItem todoItem);
 }

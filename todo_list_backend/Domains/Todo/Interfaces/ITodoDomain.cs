@@ -6,4 +6,5 @@ public interface ITodoDomain
 {
     void CreateTodo(TodoItemDto todoItemDto);
     List<TodoItemDto> GetTodos();
+    void DeleteTodo(string id);
 }
