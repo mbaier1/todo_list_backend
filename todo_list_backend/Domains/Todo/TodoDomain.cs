@@ -14,6 +14,7 @@ public class TodoDomain(ITodoDueDateCalculator _TodoDueDateCalculator, ITodoItem
         var todoItemDtos = new List<TodoItemDto>();
          todoModels.ForEach(todo =>
         {
+            todo.TodoIsOverdue = _TodoDueDateCalculator.CalculateDueDateStatus(todo.Deadline);
             todoItemDtos.Add(_todoItemModelToTodoItemDto.Map(todo));
         });
 
@@ -22,7 +23,6 @@ public class TodoDomain(ITodoDueDateCalculator _TodoDueDateCalculator, ITodoItem
 
     public void CreateTodo(TodoItemDto todoItemDto)
     {
-        todoItemDto.TodoIsOverdue = _TodoDueDateCalculator.CalculateDueDateStatus(todoItemDto.Deadline);
         var todoItemModel = _todoItemDtoToTodoItemMapper.Map(todoItemDto);
         _todoRepository.AddTodoItem(todoItemModel);
     }
