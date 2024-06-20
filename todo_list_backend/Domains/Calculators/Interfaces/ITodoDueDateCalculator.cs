@@ -1,7 +1,6 @@
-﻿namespace todo_list_backend.Domains.Calculators.Interfaces
+﻿namespace todo_list_backend.Domains.Calculators.Interfaces;
+
+public interface ITodoDueDateCalculator
 {
-    public interface ITodoDueDateCalculator
-    {
-        bool CalculateDueDateStatus(string date);
-    }
+    bool CalculateDueDateStatus(string date);
 }
