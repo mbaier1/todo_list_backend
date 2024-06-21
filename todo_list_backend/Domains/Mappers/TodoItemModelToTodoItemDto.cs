@@ -16,6 +16,7 @@ public class TodoItemModelToTodoItemDto : ITodoItemModelToTodoItemDto
             AreThereAdditionalDetails = todoItem.AreThereAdditionalDetails,
             AdditionalDetails = todoItem.AdditionalDetails,
             TodoIsOverdue = todoItem.TodoIsOverdue,
+            TodoIsCompleted = todoItem.TodoIsCompleted,
         };
     }
 }

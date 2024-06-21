@@ -10,6 +10,7 @@ public class TodoItemDtoToTodoItemMapper : ITodoItemDtoToTodoItemMapper
     {
         return new TodoItem
         {
+            Id = DetermineGuidId(todoItemDto.Id),
             Description = todoItemDto.Description,
             Deadline = todoItemDto.Deadline,
             AreThereAdditionalDetails = todoItemDto.AreThereAdditionalDetails,
@@ -17,5 +18,10 @@ public class TodoItemDtoToTodoItemMapper : ITodoItemDtoToTodoItemMapper
             TodoIsOverdue = todoItemDto.TodoIsOverdue,
             TodoIsCompleted = todoItemDto.TodoIsCompleted
         };
+    }
+
+    private Guid DetermineGuidId(string id)
+    {
+        return string.IsNullOrEmpty(id) ? Guid.Empty : Guid.Parse(id);
     }
 }
