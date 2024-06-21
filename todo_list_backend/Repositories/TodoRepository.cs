@@ -6,6 +6,12 @@ namespace todo_list_backend.Repositories;
 
 public class TodoRepository(TodoListDbContext _context) : ITodoRepository
 {
+    public void AddTodoItem(TodoItem todoItemModel)
+    {
+        _context.TodoItems.Add(todoItemModel);
+        _context.SaveChanges();
+    }
+
     public List<TodoItem> GetTodoItems()
     {
         return _context.TodoItems.ToList();
@@ -16,15 +22,15 @@ public class TodoRepository(TodoListDbContext _context) : ITodoRepository
         return _context.TodoItems.Single(x => x.Id == id);
     }
 
-    public void AddTodoItem(TodoItem todoItemModel)
+    public void UpdateTodoItem(TodoItem todoItemModel)
     {
-        _context.TodoItems.Add(todoItemModel);
+        _context.TodoItems.Update(todoItemModel);
         _context.SaveChanges();
     }
 
-    public void DeleteTodoItem(TodoItem todoItem)
+    public void DeleteTodoItem(TodoItem todoItemModel)
     {
-        _context.TodoItems.Remove(todoItem);
+        _context.TodoItems.Remove(todoItemModel);
         _context.SaveChanges();
     }
 }

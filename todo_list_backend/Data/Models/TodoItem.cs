@@ -8,4 +8,5 @@ public class TodoItem
     public bool AreThereAdditionalDetails { get; set; }
     public string AdditionalDetails { get; set; }
     public bool TodoIsOverdue { get; set; }
+    public bool TodoIsCompleted { get; set; }
 }

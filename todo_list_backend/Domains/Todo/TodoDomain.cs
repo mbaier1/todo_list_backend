@@ -8,6 +8,12 @@ namespace todo_list_backend.Domains.Todo;
 
 public class TodoDomain(ITodoDueDateCalculator _TodoDueDateCalculator, ITodoItemDtoToTodoItemMapper _todoItemDtoToTodoItemMapper, ITodoItemModelToTodoItemDto _todoItemModelToTodoItemDto, ITodoRepository _todoRepository) : ITodoDomain
 {
+    public void CreateTodo(TodoItemDto todoItemDto)
+    {
+        var todoItemModel = _todoItemDtoToTodoItemMapper.Map(todoItemDto);
+        _todoRepository.AddTodoItem(todoItemModel);
+    }
+
     public List<TodoItemDto> GetTodos()
     {
         var todoModels = _todoRepository.GetTodoItems();
@@ -21,10 +27,10 @@ public class TodoDomain(ITodoDueDateCalculator _TodoDueDateCalculator, ITodoItem
         return todoItemDtos;
     }
 
-    public void CreateTodo(TodoItemDto todoItemDto)
+    public void UpdateTodo(TodoItemDto todoItemDto)
     {
         var todoItemModel = _todoItemDtoToTodoItemMapper.Map(todoItemDto);
-        _todoRepository.AddTodoItem(todoItemModel);
+        _todoRepository.UpdateTodoItem(todoItemModel);
     }
 
     public void DeleteTodo(string id)

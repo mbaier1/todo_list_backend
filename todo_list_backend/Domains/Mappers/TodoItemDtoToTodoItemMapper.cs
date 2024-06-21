@@ -15,6 +15,7 @@ public class TodoItemDtoToTodoItemMapper : ITodoItemDtoToTodoItemMapper
             AreThereAdditionalDetails = todoItemDto.AreThereAdditionalDetails,
             AdditionalDetails = todoItemDto.AdditionalDetails,
             TodoIsOverdue = todoItemDto.TodoIsOverdue,
+            TodoIsCompleted = todoItemDto.TodoIsCompleted
         };
     }
 }

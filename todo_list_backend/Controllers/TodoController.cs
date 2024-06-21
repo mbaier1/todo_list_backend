@@ -6,26 +6,34 @@ namespace todo_list_backend.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class TodoController(ITodoDomain _dtoDomain) : ControllerBase
+public class TodoController(ITodoDomain _todoDomain) : ControllerBase
 {
-    [HttpGet]
-    public IActionResult GetTodos()
-    {
-        return Ok(_dtoDomain.GetTodos());
-    }
-
     [HttpPost]
     public IActionResult CreateTodo([FromBody] TodoItemDto todoItemDto)
     {
-        _dtoDomain.CreateTodo(todoItemDto);
+        _todoDomain.CreateTodo(todoItemDto);
 
         return Created();
+    }
+
+    [HttpGet]
+    public IActionResult GetTodos()
+    {
+        return Ok(_todoDomain.GetTodos());
+    }
+
+    [HttpPut]
+    public IActionResult UpdateTodo([FromBody] TodoItemDto todoItemDto)
+    {
+        _todoDomain.UpdateTodo(todoItemDto);
+
+        return Ok();
     }
 
     [HttpDelete]
     public IActionResult DeleteTodo([FromBody] TodoItemDto todoItemDto)
     {
-        _dtoDomain.DeleteTodo(todoItemDto.Id);
+        _todoDomain.DeleteTodo(todoItemDto.Id);
 
         return NoContent();
     }

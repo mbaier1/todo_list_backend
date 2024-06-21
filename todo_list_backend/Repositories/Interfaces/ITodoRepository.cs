@@ -4,8 +4,9 @@ namespace todo_list_backend.Repositories.Interfaces;
 
 public interface ITodoRepository
 {
+    void AddTodoItem(TodoItem todoItemModel);
     List<TodoItem> GetTodoItems();
     TodoItem GetTodoItem(Guid id);
-    void AddTodoItem(TodoItem todoItemModel);
+    void UpdateTodoItem(TodoItem todoItemModel);
     void DeleteTodoItem(TodoItem todoItem);
 }

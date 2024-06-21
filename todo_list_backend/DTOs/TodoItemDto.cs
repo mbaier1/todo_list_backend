@@ -6,7 +6,6 @@ public class TodoItemDto
 {
     [JsonPropertyName("id")]
     public string Id { get; set; }
-
     [JsonPropertyName("description")]
     public string Description { get; set; }
     [JsonPropertyName("deadline")]
@@ -17,4 +16,6 @@ public class TodoItemDto
     public string AdditionalDetails { get; set; }
     [JsonPropertyName("todoIsOverdue")]
     public bool TodoIsOverdue { get; set; }
+    [JsonPropertyName("todoIsCompleted")]
+    public bool TodoIsCompleted { get; set; }
 }
