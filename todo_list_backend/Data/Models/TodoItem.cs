@@ -9,4 +9,5 @@ public class TodoItem
     public string AdditionalDetails { get; set; }
     public bool TodoIsOverdue { get; set; }
     public bool TodoIsCompleted { get; set; }
+    public ICollection<SubTodoItem> SubTodoItems { get; set; }
 }

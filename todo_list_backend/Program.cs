@@ -22,8 +22,7 @@ builder.Services.AddDbContext<TodoListDbContext>(options => options.UseSqlServer
     "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=InMemoryDb"));
 
 builder.Services.AddTransient<ITodoDomain, TodoDomain>();
-builder.Services.AddTransient<ITodoItemDtoToTodoItemMapper, TodoItemDtoToTodoItemMapper>();
-builder.Services.AddTransient<ITodoItemModelToTodoItemDto, TodoItemModelToTodoItemDto>();
+builder.Services.AddTransient<ITodoMapper, TodoMapper>();
 builder.Services.AddTransient<ITodoDueDateCalculator, TodoDueDateCalculator>();
 builder.Services.AddTransient<ITodoRepository, TodoRepository>();
 

@@ -12,6 +12,12 @@ public class TodoRepository(TodoListDbContext _context) : ITodoRepository
         _context.SaveChanges();
     }
 
+    public void AddSubTodoItem(SubTodoItem subTodoItemModel)
+    {
+        _context.SubTodoItems.Add(subTodoItemModel);
+        _context.SaveChanges();
+    }
+
     public List<TodoItem> GetTodoItems()
     {
         return _context.TodoItems.ToList();

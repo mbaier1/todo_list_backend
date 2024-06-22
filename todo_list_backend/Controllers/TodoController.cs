@@ -16,6 +16,14 @@ public class TodoController(ITodoDomain _todoDomain) : ControllerBase
         return Created();
     }
 
+    [HttpPost]
+    [Route("{id}/subTodo")]
+    public IActionResult CreateSubTodo([FromRoute] string id, [FromBody] SubTodoItemDto subTodoItem)
+    {
+        _todoDomain.CreateSubTodo(id, subTodoItem);
+        return Created();
+    }
+
     [HttpGet]
     public IActionResult GetTodos()
     {
