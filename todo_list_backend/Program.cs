@@ -23,6 +23,7 @@ builder.Services.AddDbContext<TodoListDbContext>(options => options.UseSqlServer
 
 builder.Services.AddTransient<ITodoDomain, TodoDomain>();
 builder.Services.AddTransient<ITodoMapper, TodoMapper>();
+builder.Services.AddTransient<ISubTodoListMapper, SubTodoListMapper>();
 builder.Services.AddTransient<ITodoDueDateCalculator, TodoDueDateCalculator>();
 builder.Services.AddTransient<ITodoRepository, TodoRepository>();
 

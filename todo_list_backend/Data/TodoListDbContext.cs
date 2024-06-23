@@ -10,9 +10,9 @@ public class TodoListDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TodoItem>(x =>
-            x.HasMany(t => t.SubTodoItems)
+            x.HasMany(s => s.SubTodoItems)
             .WithOne()
-            .HasForeignKey(s => s.Id)
+            .HasForeignKey(s => s.TodoId)
         );
     }
 

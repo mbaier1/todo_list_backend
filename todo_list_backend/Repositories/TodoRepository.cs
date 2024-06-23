@@ -1,4 +1,5 @@
-﻿using todo_list_backend.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using todo_list_backend.Data;
 using todo_list_backend.Data.Models;
 using todo_list_backend.Repositories.Interfaces;
 
@@ -20,7 +21,9 @@ public class TodoRepository(TodoListDbContext _context) : ITodoRepository
 
     public List<TodoItem> GetTodoItems()
     {
-        return _context.TodoItems.ToList();
+        return _context.TodoItems
+            .Include(x => x.SubTodoItems)
+            .ToList();
     }
 
     public TodoItem GetTodoItem(Guid id)

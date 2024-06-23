@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using todo_list_backend.Data;
 
@@ -11,9 +12,11 @@ using todo_list_backend.Data;
 namespace todo_list_backend.Migrations
 {
     [DbContext(typeof(TodoListDbContext))]
-    partial class TodoListDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240622063449_CreatedSubTodoTableWithForeignKeyRelationship")]
+    partial class CreatedSubTodoTableWithForeignKeyRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +32,6 @@ namespace todo_list_backend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AdditionalDetails")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -59,8 +61,10 @@ namespace todo_list_backend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AdditionalDetails")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("AreThereAdditionalDetails")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Deadline")
                         .IsRequired()

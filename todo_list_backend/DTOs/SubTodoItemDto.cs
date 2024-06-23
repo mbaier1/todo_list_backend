@@ -12,6 +12,7 @@ public class SubTodoItemDto
     public bool AreThereAdditionalDetails { get; set; }
     [JsonPropertyName("additionalDetails")]
     public string AdditionalDetails { get; set; }
+
     [JsonPropertyName("subTodoIsOverdue")]
     public bool SubTodoIsOverdue { get; set; }
     [JsonPropertyName("subTodoIsCompleted")]

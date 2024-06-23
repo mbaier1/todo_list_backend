@@ -4,8 +4,9 @@ using todo_list_backend.DTOs;
 
 namespace todo_list_backend.Domains.Mappers;
 
-public class TodoMapper : ITodoMapper
+public class TodoMapper(ISubTodoListMapper _subTodoMapper) : ITodoMapper
 {
+    private const int SUB_TODO_MAXIMUM_AMOUNT = 2;
     public TodoItem ToTodoItem(TodoItemDto todoItemDto)
     {
         return new TodoItem
@@ -13,7 +14,6 @@ public class TodoMapper : ITodoMapper
             Id = DetermineGuidId(todoItemDto.Id),
             Description = todoItemDto.Description,
             Deadline = todoItemDto.Deadline,
-            AreThereAdditionalDetails = todoItemDto.AreThereAdditionalDetails,
             AdditionalDetails = todoItemDto.AdditionalDetails,
             TodoIsOverdue = todoItemDto.TodoIsOverdue,
             TodoIsCompleted = todoItemDto.TodoIsCompleted
@@ -27,10 +27,12 @@ public class TodoMapper : ITodoMapper
             Id = todoItem.Id.ToString(),
             Description = todoItem.Description,
             Deadline = todoItem.Deadline,
-            AreThereAdditionalDetails = todoItem.AreThereAdditionalDetails,
+            AreThereAdditionalDetails = !string.IsNullOrEmpty(todoItem.AdditionalDetails),
             AdditionalDetails = todoItem.AdditionalDetails,
             TodoIsOverdue = todoItem.TodoIsOverdue,
             TodoIsCompleted = todoItem.TodoIsCompleted,
+            HasLessThanTwoSubTodos = todoItem.SubTodoItems == null || todoItem.SubTodoItems.Count < SUB_TODO_MAXIMUM_AMOUNT,
+            SubTodoItems = todoItem.SubTodoItems != null ? _subTodoMapper.ToSubTodoItemDtos(todoItem.SubTodoItems.ToList()) : new List<SubTodoItemDto>()
         };
     }
 

@@ -17,5 +17,10 @@ public class TodoItemDto
     [JsonPropertyName("todoIsOverdue")]
     public bool TodoIsOverdue { get; set; }
     [JsonPropertyName("todoIsCompleted")]
+
     public bool TodoIsCompleted { get; set; }
+    [JsonPropertyName("hasLessThanTwoSubTodos")]
+    public bool HasLessThanTwoSubTodos { get; set; }
+    [JsonPropertyName("subTodos")]
+    public ICollection<SubTodoItemDto>? SubTodoItems { get; set; }
 }
