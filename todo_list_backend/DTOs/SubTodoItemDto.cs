@@ -6,6 +6,7 @@ public class SubTodoItemDto
 {
     [JsonPropertyName("id")]
     public string Id { get; set; }
+    [JsonRequired]
     [JsonPropertyName("description")]
     public string Description { get; set; }
     [JsonPropertyName("areThereAdditionalDetails")]

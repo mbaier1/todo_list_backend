@@ -6,8 +6,10 @@ public class TodoItemDto
 {
     [JsonPropertyName("id")]
     public string Id { get; set; }
+    [JsonRequired]
     [JsonPropertyName("description")]
     public string Description { get; set; }
+    [JsonRequired]
     [JsonPropertyName("deadline")]
     public string Deadline { get; set; }
     [JsonPropertyName("areThereAdditionalDetails")]
