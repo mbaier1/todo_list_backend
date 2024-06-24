@@ -4,7 +4,7 @@
 
 ## To run the project
 
-* 'git clone <link found on GitHub>'
+* `git clone <link found on GitHub>`
 * `dotnet nuget restore` or, if you're using an IDE (I reccomend visual studio 2022 since that's what this is configured for):
 ** Solution --> Right click --> restore nuget packages
 * `dotnet clean` or build --> Clean Solution
