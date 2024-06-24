@@ -17,10 +17,10 @@ public class TodoController(ITodoDomain _todoDomain) : ControllerBase
     }
 
     [HttpPost]
-    [Route("{id}/subTodo")]
-    public IActionResult CreateSubTodo([FromRoute] string id, [FromBody] SubTodoItemDto subTodoItem)
+    [Route("{todoId}/subTodo")]
+    public IActionResult CreateSubTodo([FromRoute] string todoId, [FromBody] SubTodoItemDto subTodoItem)
     {
-        _todoDomain.CreateSubTodo(id, subTodoItem);
+        _todoDomain.CreateSubTodo(todoId, subTodoItem);
         return Created();
     }
 
@@ -38,10 +38,27 @@ public class TodoController(ITodoDomain _todoDomain) : ControllerBase
         return Ok();
     }
 
+    [HttpPut]
+    [Route("{todoId}/subTodo/{id}")]
+    public IActionResult UpdateSubTodo([FromRoute] string todoId, [FromRoute] string id, [FromBody] SubTodoItemDto subTodoItemDto)
+    {
+        _todoDomain.UpdateSubTodo(todoId, id, subTodoItemDto);
+        return Ok();
+    }
+
     [HttpDelete]
     public IActionResult DeleteTodo([FromBody] TodoItemDto todoItemDto)
     {
         _todoDomain.DeleteTodo(todoItemDto.Id);
+
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Route("{todoId}/subTodo/{id}")]
+    public IActionResult DeleteSubTodo([FromRoute] string todoId, [FromRoute] string id, [FromBody] SubTodoItemDto subTodoItemDto)
+    {
+        _todoDomain.DeleteSubTodo(todoId, id, subTodoItemDto);
 
         return NoContent();
     }

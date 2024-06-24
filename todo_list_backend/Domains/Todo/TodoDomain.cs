@@ -7,7 +7,7 @@ using todo_list_backend.Repositories.Interfaces;
 
 namespace todo_list_backend.Domains.Todo;
 
-public class TodoDomain(ITodoDueDateCalculator _TodoDueDateCalculator, ITodoMapper _todoMapper, ITodoRepository _todoRepository) : ITodoDomain
+public class TodoDomain(ITodoDueDateCalculator _TodoDueDateCalculator, ITodoCompletedStatusCalculator _completedStatusCalculator, ITodoMapper _todoMapper, ITodoRepository _todoRepository) : ITodoDomain
 {
     public void CreateTodo(TodoItemDto todoItemDto)
     {
@@ -25,10 +25,11 @@ public class TodoDomain(ITodoDueDateCalculator _TodoDueDateCalculator, ITodoMapp
     {
         var todoModels = _todoRepository.GetTodoItems();
         var todoItemDtos = new List<TodoItemDto>();
-         todoModels.ForEach(todo =>
+         todoModels.ForEach(todoItem =>
         {
-            todo.TodoIsOverdue = _TodoDueDateCalculator.CalculateDueDateStatus(todo.Deadline);
-            todoItemDtos.Add(_todoMapper.ToTodoItemDto(todo));
+            todoItem.TodoIsOverdue = _TodoDueDateCalculator.CalculateDueDateStatus(todoItem.Deadline);
+            todoItem.TodoIsCompleted = _completedStatusCalculator.CalculateStatus(todoItem);
+            todoItemDtos.Add(_todoMapper.ToTodoItemDto(todoItem));
         });
 
         return todoItemDtos;
@@ -38,6 +39,11 @@ public class TodoDomain(ITodoDueDateCalculator _TodoDueDateCalculator, ITodoMapp
     {
         var todoItemModel = _todoMapper.ToTodoItem(todoItemDto);
         _todoRepository.UpdateTodoItem(todoItemModel);
+    }
+    public void UpdateSubTodo(string todoId, string id, SubTodoItemDto subTodoItemDto)
+    {
+        var subTodoItemModel = _todoMapper.ToSubTodoItem(todoId, subTodoItemDto);
+        _todoRepository.UpdateSubTodoItem(subTodoItemModel);
     }
 
     public void DeleteTodo(string id)
@@ -50,7 +56,23 @@ public class TodoDomain(ITodoDueDateCalculator _TodoDueDateCalculator, ITodoMapp
         }
         catch (Exception e)
         {
-            throw new Exception($"unable to delete record due to the following reason(s): {e.Message}");
+            throw new Exception($"Unable to delete record due to the following reason(s): {e.Message}");
+        }
+    }
+
+    public void DeleteSubTodo(string todoId, string id, SubTodoItemDto subTodoItemDto)
+    {
+        try
+        {
+            var subTodoGuidId = Guid.Parse(id);
+            var subTodoItemModel = _todoRepository.GetSubTodoItem(subTodoGuidId);
+
+            _todoRepository.DeleteSubTodoItem(subTodoItemModel);
+        }
+        catch (Exception e)
+        {
+            throw new Exception($"Unable to delete record due to the following reason(s): {e.Message}");
+
         }
     }
 }
