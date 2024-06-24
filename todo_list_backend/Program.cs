@@ -33,7 +33,7 @@ var reactTodoPolicy = "ReactTodoPolicy";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(reactTodoPolicy,
-        builder => builder.WithOrigins("http://localhost:3000", "http://192.168.1.147:3000")
+        builder => builder.WithOrigins("http://localhost:3000", "http://192.168.1.147:3000", "https://matthew-baier-todo-list-i6jgpgsxs-matthew-baiers-projects.vercel.app/")
         .AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 });
 
