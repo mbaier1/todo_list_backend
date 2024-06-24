@@ -7,7 +7,8 @@ public class TodoDueDateCalculator : ITodoDueDateCalculator
     public bool CalculateDueDateStatus(string date)
     {
         var convertedDate = Convert.ToDateTime(date);
+        var utcConvertedDate = DateTime.SpecifyKind(convertedDate, DateTimeKind.Utc);
 
-        return DateTime.UtcNow.Date > convertedDate.Date;
+        return DateTime.UtcNow.Date > utcConvertedDate.Date;
     }
 }
